@@ -1,0 +1,14 @@
+select number from teste;
+select number, teste from teste, teste2;
+select number from teste where teste = 'eu';
+select number from teste where teste = 100;
+select number from teste where teste = 100.00;
+select number from teste where teste > 100.00;
+select number from teste where teste < 100.00;
+select number from teste where teste >= 100.00;
+select number from teste where teste <= 100.00;
+select number from teste where teste <> 100.00;
+select number from teste where teste like 'eu';
+select number from teste where teste = 'eu' and eu = 'teste';
+select number from teste where teste = 'eu' and eu = 'teste' or aa = 'b';
+select number from teste where teste = 'eu' and ( eu = 'teste' or aa = 'b' );
