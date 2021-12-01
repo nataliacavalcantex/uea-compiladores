@@ -1,0 +1,10 @@
+int x
+int y
+int w
+float k
+y = 89 
+x = 11
+k = 3+6*(8/2)
+w = y+x
+print(k)
+print(w)+

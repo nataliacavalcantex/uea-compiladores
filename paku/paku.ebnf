@@ -1,0 +1,58 @@
+PROGRAM
+    : STATEMENT END{YYACCEPT;}
+    ;
+
+STATEMENT 
+    : LINE
+    | STATEMENT STATEMENT
+    ;
+
+LINE 
+    :ATTRIBUTION
+    | FUNCTION
+    | DECLARATION
+    | EOL
+    ;
+
+ATTRIBUTION
+    : IDENTIFIER EQUALS CALC EOL
+    | IDENTIFIER EQUALS IDENTIFIER_CALC EOL
+    ;
+
+IDENTIFIER_CALC
+    : IDENTIFIER PLUS IDENTIFIER
+    | IDENTIFIER MINUS IDENTIFIER
+    | IDENTIFIER DIVIDE IDENTIFIER
+    | IDENTIFIER TIMES IDENTIFIER
+    ;
+
+CALC
+    : NUMBER
+    | CALC '+' CALC
+    | CALC '-' CALC
+    | CALC '/' CALC
+    | CALC '*' CALC
+    | '(' CALC ')'
+    ;
+
+FUNCTION
+    : IDENTIFIER '(' IDENTIFIER ')' EOL
+    ;
+
+DECLARATION
+    : TYPE IDENTIFIER EOL
+    ;
+
+TYPE
+    : int
+    | float
+    ;
+
+IDENTIFIER
+    : [a-zA-Z_][_a-zA-Z0-9]*
+    ;
+
+NUMBER
+    : [0-9]+(\.[0-9]+)?
+    |[0-9]+
+    ;
