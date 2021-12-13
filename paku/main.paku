@@ -1,0 +1,13 @@
+int x
+x = 2
+x = x * x
+print(x)
+int z
+read(z)
+print(z)
+if(z > 2){
+    print(z)
+}else{
+    print(x)
+}
+

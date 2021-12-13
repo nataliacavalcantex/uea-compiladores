@@ -13,24 +13,15 @@ void yyerror(char *s);
 "else"                              { return ELSE;}
 "{"                                 { return O_KEY;}
 "}"                                 { return C_KEY;}
-[=]									{ return EQUALS; }
-[<]                                 {return LESS_THEN;}
-[>]                                 {return GREATER_THEN;}
-">="                                {return GREATER_THEN_EQUAL;}
-"<="                                {return LESS_THEN_EQUAL;}
-"=="			                    {return EQUALS_DOUBLE;}
-"!="                                {return NOTEQUAL;}
-[+]			    					{ return PLUS; }
-[-]		    						{ return MINUS; }
-[/]     							{ return DIVIDE; }
-[*]     							{ return TIMES; }
+"="                                 { return EQUALS;}
+">="|"<="|"=="|"!="|[=<>+-/*]        { yylval.op = strdup(yytext); return OPERATOR; }
 [(]     							{ return P_LEFT; }
 [)]     							{ return P_RIGHT; }
 print								{ return PRINT; }
 read                                { return READ; }
-int|float               			{ return TYPE; }
-[0-9]+|[0-9]+(\.[0-9]+)?  			{ yylval.d = atof(yytext);return NUMBER; }
-[a-zA-Z_][_a-zA-Z0-9]*  			{ yylval.s = strdup(yytext); return IDENTIFIER; }
+int|float                           { return TYPE; }
+[0-9]+|[0-9]+(\.[0-9]+)?  			{ yylval.val = atof(yytext);return NUMBER; }
+[a-zA-Z_][_a-zA-Z0-9]*  			{ yylval.name = strdup(yytext); return IDENTIFIER; }
 \n                      			{ return EOL; }
 <<EOF>>								{ return END; }
 [[:space:]]							;

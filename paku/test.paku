@@ -1,24 +1,30 @@
 int x
-int y
-int w
-int z
-float k
+x = 1
+print(x)
+read(x)
 
-y = 89
-x = 11
-
-read(z)
-print(z)
-
-k = 5+6*(8/2)
-
-w = x + y + k
-
-if (w > x){
-    print(w)
-}else {
+if( x > 10){
+    print(x)
+}else{
     print(x)
 }
 
-print(k)
-print(w)
+int z
+z = 2
+print(z)
+int a
+
+if(z != 2){
+    print(z)
+}
+w = x + z * 2
+y = x + z + w
+print(y)
+
+if( z == 2) {
+    if (z != 2) {
+        print(z)
+    }else{
+        print(x)
+    }
+}

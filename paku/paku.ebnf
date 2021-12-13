@@ -1,58 +1,42 @@
-PROGRAM
-    : STATEMENT END{YYACCEPT;}
+program: statements ;
+
+block: O_KEY statements C_KEY;
+
+statements:
+    | statements statement
     ;
 
-STATEMENT 
-    : LINE
-    | STATEMENT STATEMENT
-    ;
-
-LINE 
-    :ATTRIBUTION
-    | FUNCTION
-    | DECLARATION
+statement: 
+    declaration 
+    | attribution
+    | if_stmt
+    | read_stmt
+    | print_stmt
     | EOL
     ;
 
-ATTRIBUTION
-    : IDENTIFIER EQUALS CALC EOL
-    | IDENTIFIER EQUALS IDENTIFIER_CALC EOL
+if_stmt: IF P_LEFT expression P_RIGHT block EOL
+    | IF P_LEFT expression P_RIGHT block ELSE block EOL
     ;
 
-IDENTIFIER_CALC
-    : IDENTIFIER PLUS IDENTIFIER
-    | IDENTIFIER MINUS IDENTIFIER
-    | IDENTIFIER DIVIDE IDENTIFIER
-    | IDENTIFIER TIMES IDENTIFIER
+attribution: IDENTIFIER EQUALS expression EOL
     ;
 
-CALC
-    : NUMBER
-    | CALC '+' CALC
-    | CALC '-' CALC
-    | CALC '/' CALC
-    | CALC '*' CALC
-    | '(' CALC ')'
+expression:
+    NUMBER
+    | IDENTIFIER 
+    | expression OPERATOR expression 
+    | P_LEFT expression P_RIGHT 
     ;
 
-FUNCTION
-    : IDENTIFIER '(' IDENTIFIER ')' EOL
+print_stmt:
+    PRINT P_LEFT IDENTIFIER P_RIGHT EOL 
     ;
 
-DECLARATION
-    : TYPE IDENTIFIER EOL
+read_stmt:
+    READ P_LEFT IDENTIFIER P_RIGHT EOL 
     ;
 
-TYPE
-    : int
-    | float
-    ;
-
-IDENTIFIER
-    : [a-zA-Z_][_a-zA-Z0-9]*
-    ;
-
-NUMBER
-    : [0-9]+(\.[0-9]+)?
-    |[0-9]+
+declaration:
+    TYPE IDENTIFIER EOL 
     ;

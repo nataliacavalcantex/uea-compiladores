@@ -1,7 +1,7 @@
 paku: paku.y paku.l
-	bison -d paku.y 
+	bison -d paku.y --debug
 	flex -o paku.l.c paku.l
-	gcc -o paku paku.l.c paku.tab.c -ll -lm 
+	gcc -o paku  paku.l.c paku.tab.c -ll -lm 
 
 clean:
 	rm -f paku.l.c paku.tab.c paku.tab.h paku
